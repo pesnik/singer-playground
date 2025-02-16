@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spec-exploration"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "rhasanm", email = "hasanrakibul.masum@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "click",
+]
+
+[project.urls]
+Documentation = "https://github.com/rhasanm/spec-exploration#readme"
+Issues = "https://github.com/rhasanm/spec-exploration/issues"
+Source = "https://github.com/rhasanm/spec-exploration"
+
+[project.scripts]
+spec-exploration = "spec_exploration.cli:spec_exploration"
+
+[tool.hatch.version]
+path = "src/spec_exploration/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/spec_exploration tests}"
+
+[tool.coverage.run]
+source_pkgs = ["spec_exploration", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/spec_exploration/__about__.py",
+]
+
+[tool.coverage.paths]
+spec_exploration = ["src/spec_exploration", "*/spec-exploration/src/spec_exploration"]
+tests = ["tests", "*/spec-exploration/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
