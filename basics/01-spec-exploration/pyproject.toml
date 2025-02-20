@@ -26,6 +26,7 @@ classifiers = [
 ]
 dependencies = [
   "click",
+  "tap-mysql"
 ]
 
 [project.urls]
@@ -63,4 +64,11 @@ exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
+]
+
+[tool.hatch.envs.dev]
+python = "3.11"
+dependencies = [
+  "click",
+  "tap-mysql"
 ]
