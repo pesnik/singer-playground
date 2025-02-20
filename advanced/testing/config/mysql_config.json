@@ -1,0 +1,6 @@
+{
+  "host": "host.docker.internal",
+  "port": "4497",
+  "user": "rootbackend",
+  "password": "rootbackend"
+}
