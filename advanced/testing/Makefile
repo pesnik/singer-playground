@@ -17,8 +17,13 @@ state:
 	tap-mysql --config config/mysql_config.json --properties properties/mysql_properties.json | grep STATE | tail -n 1 > state.json
 backup:
 	tap-mysql --config config/mysql_config.json --properties properties/mysql_properties.json > src/spec_exploration/state.json
+backup_csv:
+	tap-mysql --config config/mysql_config.json --properties properties/mysql_properties.json | target-csv
 
 # ETL
 etl:
 	tap-mysql --config config/mysql_config.json --properties properties/mysql_properties.json --state state.json | target-postgres --config config/postgres_config.json
+
+etl_full_table:
+	tap-mysql --config config/mysql_config.json --properties properties/full_table_mysql_properties.json | target-postgres --config config/postgres_config.json
 
